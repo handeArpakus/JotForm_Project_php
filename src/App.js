@@ -1,9 +1,8 @@
 import React, { useState, useEffect, Component } from "react";
 import "./App.css";
 import axios from "axios";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { Tab, Tabs } from "react-bootstrap";
 import * as ReactBootStrap from "react-bootstrap";
-import Table from "react-bootstrap/Table";
 import { Pie } from "react-chartjs-2";
 
 var done;
@@ -81,53 +80,48 @@ function App() {
     );
   };
 
-  const renderTabList = (tabList, index) => {
-    return <Tab key={index}>{tabList.assignedTask}</Tab>;
-  };
-
-  const renderTabPanel = (tabPanel, index) => {
+  const renderTabList2 = (tabList, index) => {
     return (
-      <TabPanel key={index}>
-        <h5>{tabPanel.assignedTask}</h5>
-        <p>
-          <strong>Assigned to: </strong>
-          {tabPanel.Name}
-        </p>
-        <p>
-          <strong>Deadline: </strong>
-          {tabPanel.deadline}
-        </p>
-        <p>
-          <strong>Description: </strong>
-          {tabPanel.description}
-        </p>
-      </TabPanel>
+      <Tab eventKey={index} title={tabList.assignedTask}>
+        <div className="tab-item-wrapper" style={{ marginTop: "20px" }}>
+          <h5>{tabList.assignedTask}</h5>
+          <p>
+            <strong>Assigned to: </strong>
+            {tabList.name}
+          </p>
+          <p>
+            <strong>Deadline: </strong>
+            {tabList.deadline}
+          </p>
+          <p>
+            <strong>Description: </strong>
+            {tabList.description}
+          </p>
+        </div>
+      </Tab>
     );
   };
 
   /////////////////////////////////////////////////////////  RETURN /////////////////////////////////////////////////////////
   return (
     <div>
-      <div>
-        <Tabs
-          style={{
-            marginLeft: "50px",
-            fontSize: "20px",
-            marginTop: "20px",
-            width: "500px",
-          }}
-        >
-          <TabList>{teamInfo.map(renderTabList)}</TabList>
-          <div
-            style={{
-              marginLeft: "70px",
-              marginTop: "-135px",
-              fontSize: "17px",
-            }}
-          >
-            {teamInfo.map(renderTabPanel)}
+      <div
+        style={{
+          width: "500px",
+          height: "300px",
+          marginLeft: "50px",
+          marginTop: "50px",
+        }}
+      >
+        <div className="tab-wrapper">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-sm-12">
+                <Tabs>{teamInfo.map(renderTabList2)}</Tabs>
+              </div>
+            </div>
           </div>
-        </Tabs>
+        </div>
       </div>
       <div
         style={{
