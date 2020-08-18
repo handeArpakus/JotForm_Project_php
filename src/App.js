@@ -4,6 +4,7 @@ import axios from "axios";
 import { Tab, Tabs } from "react-bootstrap";
 import * as ReactBootStrap from "react-bootstrap";
 import { Pie } from "react-chartjs-2";
+import ProgressBar from "react-bootstrap/ProgressBar";
 
 var done;
 var process;
@@ -72,10 +73,13 @@ function App() {
   /////////////////////////////////////////////////////////////////// RENDERS ////////////////////////////////////////////////
   const renderInfo = (team, index) => {
     return (
-      <tr key={index}>
+      <tr key={index} style={{ fontSize: "16px" }}>
         <td>{team.name}</td>
         <td>{team.title}</td>
-        <td>{team.assignedTask}</td>
+        <td>
+          <p>{team.assignedTask}</p>{" "}
+          <ProgressBar animated now={team.progress} />
+        </td>
       </tr>
     );
   };
@@ -83,7 +87,10 @@ function App() {
   const renderTabList2 = (tabList, index) => {
     return (
       <Tab eventKey={index} title={tabList.assignedTask}>
-        <div className="tab-item-wrapper" style={{ marginTop: "20px" }}>
+        <div
+          className="tab-item-wrapper"
+          style={{ marginTop: "20px", marginLeft: "20px" }}
+        >
           <h5>{tabList.assignedTask}</h5>
           <p>
             <strong>Assigned to: </strong>
@@ -104,12 +111,31 @@ function App() {
 
   /////////////////////////////////////////////////////////  RETURN /////////////////////////////////////////////////////////
   return (
-    <div>
+    <body>
+      <div
+        style={{
+          backgroundColor: "#f38632",
+          width: "100%",
+          height: "130px",
+        }}
+      >
+        <img src="./images/podo_8.png" style={{ width: "240px" }}></img>
+        <img
+          src="./images/logo.png"
+          style={{
+            width: "120px",
+            float: "right",
+            clear: "right",
+            marginLeft: "-50px",
+          }}
+        ></img>
+      </div>
+
       <div
         style={{
           width: "500px",
           height: "300px",
-          marginLeft: "50px",
+          marginLeft: "100px",
           marginTop: "50px",
         }}
       >
@@ -125,31 +151,38 @@ function App() {
       </div>
       <div
         style={{
-          height: "500px",
+          height: "100px",
           width: "500px",
-          margin: "50px",
           float: "right",
+          marginTop: "-300px",
         }}
       >
-        <div>
-          <Pie
-            data={charData}
-            options={{
-              title: {
-                display: true,
-                text: "Progress of the project",
-                fontSize: 25,
-              },
-              legend: {
-                display: true,
-                position: "right",
-              },
-            }}
-          />
-        </div>
+        <Pie
+          data={charData}
+          options={{
+            title: {
+              display: true,
+              text: "Progress of the project",
+              fontSize: 20,
+            },
+            legend: {
+              display: true,
+              position: "right",
+            },
+          }}
+        />
       </div>
-
-      <ReactBootStrap.Table stripped bordered hover>
+      <ReactBootStrap.Table
+        stripped
+        bordered
+        hover
+        style={{
+          width: "1000px",
+          margin: "auto",
+          marginTop: "20px",
+          height: "100px",
+        }}
+      >
         <thead>
           <tr>
             <th>Name</th>
@@ -159,7 +192,7 @@ function App() {
         </thead>
         <tbody>{teamInfo.map(renderInfo)}</tbody>
       </ReactBootStrap.Table>
-    </div>
+    </body>
   );
 }
 
