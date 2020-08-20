@@ -77,7 +77,10 @@ function App() {
         <td>{team.assignedTo}</td>
         <td>{team.title}</td>
         <td>
-          <p>{team.name}</p> <ProgressBar animated now={team.progress} />
+          <p>
+            {team.name}: {team.progress}%{" "}
+          </p>{" "}
+          <ProgressBar animated now={team.progress} />
         </td>
       </tr>
     );
@@ -152,7 +155,7 @@ function App() {
         style={{
           height: "100px",
           width: "500px",
-          float: "right",
+          marginLeft: "980px",
           marginTop: "-300px",
         }}
       >
@@ -164,7 +167,7 @@ function App() {
               text: "Progress of the project",
               fontSize: 20,
               fontColor: "#000000",
-              marginRight: "150px!",
+              marginLeft: "-150px",
             },
             legend: {
               display: true,
@@ -180,7 +183,7 @@ function App() {
         style={{
           width: "1000px",
           margin: "auto",
-          marginTop: "20px",
+          marginTop: "220px",
           height: "100px",
         }}
       >
