@@ -44,7 +44,7 @@ function App() {
         datasets: [
           {
             label: "Rainfall",
-            backgroundColor: ["#2FDE00", "#C9DE00", "#B21F00"],
+            backgroundColor: ["#00FF00", "#FFFF00", "#FF0000"],
             data: [done, process, notStarted],
           },
         ],
@@ -74,11 +74,10 @@ function App() {
   const renderInfo = (team, index) => {
     return (
       <tr key={index} style={{ fontSize: "16px" }}>
-        <td>{team.name}</td>
+        <td>{team.assignedTo}</td>
         <td>{team.title}</td>
         <td>
-          <p>{team.assignedTask}</p>{" "}
-          <ProgressBar animated now={team.progress} />
+          <p>{team.name}</p> <ProgressBar animated now={team.progress} />
         </td>
       </tr>
     );
@@ -86,15 +85,15 @@ function App() {
 
   const renderTabList2 = (tabList, index) => {
     return (
-      <Tab eventKey={index} title={tabList.assignedTask}>
+      <Tab eventKey={index} title={tabList.name}>
         <div
           className="tab-item-wrapper"
           style={{ marginTop: "20px", marginLeft: "20px" }}
         >
-          <h5>{tabList.assignedTask}</h5>
+          <h5>{tabList.name}</h5>
           <p>
             <strong>Assigned to: </strong>
-            {tabList.name}
+            {tabList.assignedTo}
           </p>
           <p>
             <strong>Deadline: </strong>
@@ -133,7 +132,7 @@ function App() {
 
       <div
         style={{
-          width: "500px",
+          width: "700px",
           height: "300px",
           marginLeft: "100px",
           marginTop: "50px",
@@ -164,6 +163,8 @@ function App() {
               display: true,
               text: "Progress of the project",
               fontSize: 20,
+              fontColor: "#000000",
+              marginRight: "150px!",
             },
             legend: {
               display: true,
