@@ -19,7 +19,6 @@
         $progress = 0;
         $status = 1;
 
-        $length = sizeof($submissions);
         $flag = 0;
 
 
@@ -64,6 +63,7 @@
                         }
                     }
                     if($flag==0){
+
                         //get the title
                         $titleSql = "SELECT title FROM team WHERE name='$memberName'";
             
@@ -74,7 +74,7 @@
                         $title=$resArray[0];
 
 
-                        // //adding to database
+                        //adding new task to database
                         $sql1 = "INSERT INTO task (name, assignedTo, progress, status, description, deadline, title) VALUES ('$task', '$memberName', '$progress', '$status', '$description', '$deadline','$title')";
 
                         $sqlResult = mysqli_query($conn, $sql1);
@@ -83,6 +83,7 @@
             }
         }
     }
+
     function updateTask_leader($submissions){
 
         //connect to database
@@ -99,6 +100,7 @@
         $progress;
         $deadline;
         $descrip;
+
         foreach($submissions[0]["answers"] as $answersArray){
             if(isset($answersArray["name"]) && $answersArray["name"]=="pleaseSelect4"){
                 if(isset($answersArray["answer"])){
@@ -162,6 +164,8 @@
 
     function addMember_leader($submissions){
 
+        $flag=0;
+
         //connect to database
         $conn = mysqli_connect('localhost', 'root', '', 'jotform');
 
@@ -174,8 +178,8 @@
         $titleToAdd;
         foreach($submissions[0]["answers"] as $newMemberArray){
             if(isset($newMemberArray["name"]) && $newMemberArray["name"]=="nameOf"){
-                if(isset($newMemberArray["answer"])){
-                    $nameToAdd = $newMemberArray["answer"];
+                if(isset($newMemberArray["prettyFormat"])){
+                    $nameToAdd = $newMemberArray["prettyFormat"];
                 }
             }else if(isset($newMemberArray["name"]) && $newMemberArray["name"]=="titleOf"){
                 if(isset($newMemberArray["answer"])){
@@ -184,7 +188,24 @@
             }
         }
 
-        $memberSql = "INSERT INTO team VALUES('$nameToAdd', '$titleToAdd')";
+        $checkSql = "SELECT * FROM team";
 
-        $memberResult = mysqli_query($conn, $memberSql);
+        $checkResult = mysqli_query($conn, $checkSql);
+
+        $checkArr = mysqli_fetch_all($checkResult, MYSQLI_ASSOC);
+
+        if(sizeof($checkArr)!=0){
+            foreach($checkArr as $arr){
+                if($arr["name"] == $nameToAdd)
+                    $flag=1;
+            }
+        }
+
+        if($flag==0){
+            $memberSql = "INSERT INTO team(name, title) VALUES('$nameToAdd', '$titleToAdd')";
+
+            $memberResult = mysqli_query($conn, $memberSql);
+    
+            $allTasksArr = mysqli_fetch_all($memberResult, MYSQLI_ASSOC);
+        }
     }
