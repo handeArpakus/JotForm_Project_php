@@ -12,46 +12,32 @@ var teamInfo = new Array();
 
 function BigChartComponent() {
   const [chart_posts, setChartPosts] = useState([]);
-  const [charData, setChartData] = useState({});
 
   useEffect(() => {
     // setTimeout(() => {
     axios
       .get("/getPerc.php")
       .then((res) => {
-        setChartPosts(res.data);
-        console.log(res.data);
+        setChartPosts({
+          labels: ["Done", "Processing", "Not Started"],
+          datasets: [
+            {
+              label: "Rainfall",
+              backgroundColor: ["#00FF00", "#FFFF00", "#FF0000"],
+              data: [
+                res.data[0].done,
+                res.data[0].proc,
+                res.data[0].notStarted,
+              ],
+            },
+          ],
+        });
       })
       .catch((err) => {
         console.log(err);
       });
     // }, 3000);
   });
-  chart_posts.map((post) => {
-    done = post.done;
-    process = post.proc;
-    notStarted = post.notStarted;
-    lastDate = post.updateDate;
-  });
-
-  const chart = () => {
-    axios.get("/getPerc.php").then((res) => {
-      console.log(res);
-      setChartData({
-        labels: ["Done", "Processing", "Not Started"],
-        datasets: [
-          {
-            label: "Rainfall",
-            backgroundColor: ["#00FF00", "#FFFF00", "#FF0000"],
-            data: [done, process, notStarted],
-          },
-        ],
-      });
-    });
-  };
-  useEffect(() => {
-    chart();
-  }, []);
 
   return (
     <div
@@ -64,7 +50,7 @@ function BigChartComponent() {
       }}
     >
       <Pie
-        data={charData}
+        data={chart_posts}
         options={{
           title: {
             display: true,
