@@ -36,8 +36,10 @@
             //         }
             //         else if(isset($denemeArr["answer"]) && $denemeArr["answer"] == "Update a task"){
             //             updateTask_leader($submissions);
-            //         }else if(isset($denemeArr["answer"]) && $denemeArr["answer"] == "Add a team member")
+            //         }else if(isset($denemeArr["answer"]) && $denemeArr["answer"] == "Add a team member"){
             //             addMember_leader($submissions);
+            //         }else if(isset($denemeArr["answer"]) && $denemeArr["answer"] == "Delete a task")
+            //             deleteTask_leader($submissions);
             //     }
             // }
 

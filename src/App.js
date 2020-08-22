@@ -6,7 +6,7 @@ import BigChart from "./BigChartComponent";
 
 function App() {
   return (
-    <body>
+    <div>
       <div
         style={{
           backgroundColor: "#f38632",
@@ -28,7 +28,7 @@ function App() {
       <TabComponent />
       <TableComponent />
       <BigChart />
-    </body>
+    </div>
   );
 }
 

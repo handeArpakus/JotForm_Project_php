@@ -209,3 +209,30 @@
             $allTasksArr = mysqli_fetch_all($memberResult, MYSQLI_ASSOC);
         }
     }
+
+    function deleteTask_leader($submissions){
+        //connect to database
+        $conn = mysqli_connect('localhost', 'root', '', 'jotform');
+
+        //check the connection
+        if(!$conn){
+            echo 'Connection error: ' . mysqli_connect_error();
+        }
+
+        $taskToDelete;
+
+        foreach($submissions[0]["answers"] as $answersArray){
+            if(isset($answersArray["name"]) && $answersArray["name"]=="pleaseSelect24"){
+                if(isset($answersArray["answer"])){
+                    $taskToDelete = $answersArray["answer"];
+                }
+            }
+        }
+
+        $deleteSql = "DELETE FROM task WHERE name='$taskToDelete'";
+
+        $deleteResult = mysqli_query($conn, $deleteSql);
+
+        //$deleteArr = mysqli_fetch_all($deleteResult, MYSQLI_ASSOC);
+
+    }

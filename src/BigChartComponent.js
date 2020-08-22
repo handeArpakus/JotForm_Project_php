@@ -3,13 +3,6 @@ import "./App.css";
 import axios from "axios";
 import { Pie } from "react-chartjs-2";
 
-var done;
-var process;
-var notStarted;
-var lastDate;
-
-var teamInfo = new Array();
-
 function BigChartComponent() {
   const [chart_posts, setChartPosts] = useState([]);
 
