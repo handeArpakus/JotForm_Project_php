@@ -9,6 +9,7 @@ var teamInfo = new Array();
 
 function TableComponent() {
   const [infoPosts, setInfoPosts] = useState([]);
+  const [modalShow, setModalShow] = React.useState(false);
 
   useEffect(() => {
     axios
@@ -37,7 +38,10 @@ function TableComponent() {
           <ProgressBar animated now={team.progress} />
         </td>
         <td>
-          <ModalComponent />
+          <button variant="primary" onClick={() => setModalShow(true)}>
+            Launch vertically centered modal
+          </button>
+          <ModalComponent show={modalShow} onHide={() => setModalShow(false)} />
         </td>
       </tr>
     );
