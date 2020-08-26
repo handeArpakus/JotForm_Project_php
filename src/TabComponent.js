@@ -20,7 +20,7 @@ function TabComponent() {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   //render to make the tab dynamic
   const renderTabList2 = (tabList, index) => {

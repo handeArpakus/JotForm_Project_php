@@ -71,8 +71,6 @@
     $progPerc = $progressSum / $num;
     $nsPerc = 100 - ($donePerc + $progPerc);
 
-    //$checkSql = "SELECT * FROM percantage WHERE updateDate = (SELECT MAX(updateDate) FROM percantage)";
-
     $limitA = $limit -1; 
     $checkSql = "SELECT * FROM percantage LIMIT 1 OFFSET $limitA";
 
@@ -81,32 +79,21 @@
     $checkArr = mysqli_fetch_all($checkResult, MYSQLI_ASSOC);
 
     $checking = 0;
-    // if($checkArr["done"]==$donePerc && $checkArr["proc"]==$progPerc && $checkArr["notStarted"]==$nsPerc)
-    //     $checking=1;
 
     if($checking==0){
         $percSql = "INSERT INTO percantage(updateDate,done,proc, notStarted, tasks) VALUES ('$date', '$donePerc', '$progPerc', '$nsPerc', '$num') ";
 
         $percResult = mysqli_query($conn, $percSql);
-    
-        //$PercArr = mysqli_fetch_all($percResult, MYSQLI_ASSOC);
     }
 
  
 
     //getting last version of the progress
-    $sql = "SELECT * FROM percantage LIMIT 1 OFFSET $limitA";//'SELECT * FROM percantage WHERE updateDate = (SELECT MAX(updateDate) FROM percantage)';
+    $sql = "SELECT * FROM percantage LIMIT 1 OFFSET $limitA";
     
     //make query and get result
     $result = mysqli_query($conn, $sql);
     $info = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    // $perc = array();
-
-    // //$check = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-    //     while($row = mysqli_fetch_assoc($result)){
-    //         $perc[] = $row;
-    //     }
     
-        echo json_encode($info);
+    echo json_encode($info);
     

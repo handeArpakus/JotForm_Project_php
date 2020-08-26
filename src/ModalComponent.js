@@ -1,7 +1,12 @@
 import React, { useState, useEffect, Component } from "react";
 import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+//import InlineEdit from "./InlineEdit";
 
 function ModalComponent(props) {
+  function edit() {
+    console.log("hello");
+  }
   return (
     <div>
       <Modal
@@ -17,26 +22,12 @@ function ModalComponent(props) {
         </Modal.Header>
         <Modal.Body>
           <h4>Centered Modal</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Habitasse platea dictumst quisque sagittis. Cursus in hac habitasse
-            platea dictumst quisque sagittis purus. Faucibus in ornare quam
-            viverra orci sagittis eu volutpat. Tristique nulla aliquet enim
-            tortor at. Imperdiet dui accumsan sit amet nulla facilisi morbi
-            tempus iaculis. Risus nullam eget felis eget nunc lobortis mattis.
-            Sem viverra aliquet eget sit amet tellus cras adipiscing enim.
-            Rhoncus mattis rhoncus urna neque. In ornare quam viverra orci
-            sagittis. Volutpat odio facilisis mauris sit amet massa vitae
-            tortor. Diam phasellus vestibulum lorem sed risus. Egestas sed
-            tempus urna et pharetra pharetra massa massa. Diam quis enim
-            lobortis scelerisque. Viverra mauris in aliquam sem fringilla ut.
-            Aliquam sem et tortor consequat id porta nibh venenatis. Vel quam
-            elementum pulvinar etiam non quam lacus suspendisse faucibus.
-          </p>
+          {/* <InlineEdit /> */}
+          <p>Hi</p>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={props.onHide}>Close</button>
+          <Button onClick={props.onHide}>Close</Button>
+          <Button onClick={() => edit()}>Edit</Button>
         </Modal.Footer>
       </Modal>
     </div>

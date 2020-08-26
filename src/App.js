@@ -3,6 +3,7 @@ import "./App.css";
 import TabComponent from "./TabComponent";
 import TableComponent from "./TableComponent";
 import BigChart from "./BigChartComponent";
+import PieChart from "./PieChart";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <TabComponent />
       <TableComponent />
       <BigChart />
+      {/* <PieChart /> */}
     </div>
   );
 }

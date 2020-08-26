@@ -3,14 +3,20 @@ import "./App.css";
 import axios from "axios";
 import { Pie } from "react-chartjs-2";
 
+function roundToTwo(num) {
+  return +(Math.round(num + "e+2") + "e-2");
+}
+
 function BigChartComponent() {
   const [chart_posts, setChartPosts] = useState([]);
 
   useEffect(() => {
-    // setTimeout(() => {
     axios
       .get("/getPerc.php")
       .then((res) => {
+        var done = res.data[0].done;
+
+        console.log(roundToTwo(res.data[0].done));
         setChartPosts({
           labels: ["Done", "Processing", "Not Started"],
           datasets: [
@@ -18,9 +24,9 @@ function BigChartComponent() {
               label: "Rainfall",
               backgroundColor: ["#00FF00", "#FFFF00", "#FF0000"],
               data: [
-                res.data[0].done,
-                res.data[0].proc,
-                res.data[0].notStarted,
+                roundToTwo(res.data[0].done),
+                roundToTwo(res.data[0].proc),
+                roundToTwo(res.data[0].notStarted),
               ],
             },
           ],
@@ -29,8 +35,7 @@ function BigChartComponent() {
       .catch((err) => {
         console.log(err);
       });
-    // }, 3000);
-  });
+  }, []);
 
   return (
     <div

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import * as ReactBootStrap from "react-bootstrap";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import { useForm } from "react-hook-form";
+import Button from "react-bootstrap/Button";
 import ModalComponent from "./ModalComponent";
 
 var teamInfo = new Array();
@@ -24,7 +24,7 @@ function TableComponent() {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   const renderInfo = (team, index) => {
     return (
@@ -36,11 +36,13 @@ function TableComponent() {
             {team.name}: {team.progress}%{" "}
           </p>{" "}
           <ProgressBar animated now={team.progress} />
-        </td>
-        <td>
-          <button variant="primary" onClick={() => setModalShow(true)}>
-            Launch vertically centered modal
-          </button>
+          <Button
+            variant="primary"
+            onClick={() => setModalShow(true)}
+            style={{ marginTop: "25px" }}
+          >
+            Comment
+          </Button>
           <ModalComponent show={modalShow} onHide={() => setModalShow(false)} />
         </td>
       </tr>
@@ -65,7 +67,6 @@ function TableComponent() {
             <th>Name</th>
             <th>Title</th>
             <th>Assignments</th>
-            <th>Comment</th>
           </tr>
         </thead>
         <tbody>{teamInfo.map(renderInfo)}</tbody>
