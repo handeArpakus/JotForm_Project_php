@@ -36,14 +36,14 @@ function TableComponent() {
             {team.name}: {team.progress}%{" "}
           </p>{" "}
           <ProgressBar animated now={team.progress} />
-          <Button
+          {/* <Button
             variant="primary"
             onClick={() => setModalShow(true)}
             style={{ marginTop: "25px" }}
           >
             Comment
           </Button>
-          <ModalComponent show={modalShow} onHide={() => setModalShow(false)} />
+          <ModalComponent show={modalShow} onHide={() => setModalShow(false)} /> */}
         </td>
       </tr>
     );
@@ -56,8 +56,8 @@ function TableComponent() {
         bordered
         hover
         style={{
-          width: "1000px",
-          margin: "auto",
+          width: "800px",
+          marginLeft: "110px",
           marginTop: "80px",
           height: "100px",
         }}

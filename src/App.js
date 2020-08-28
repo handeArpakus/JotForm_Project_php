@@ -4,6 +4,7 @@ import TabComponent from "./TabComponent";
 import TableComponent from "./TableComponent";
 import BigChart from "./BigChartComponent";
 import PieChart from "./PieChart";
+import BarChart from "./BarChartComponent";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <TableComponent />
       <BigChart />
       {/* <PieChart /> */}
+      <BarChart />
     </div>
   );
 }

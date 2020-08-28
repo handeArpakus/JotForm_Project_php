@@ -14,14 +14,11 @@ function BigChartComponent() {
     axios
       .get("/getPerc.php")
       .then((res) => {
-        var done = res.data[0].done;
-
-        console.log(roundToTwo(res.data[0].done));
         setChartPosts({
           labels: ["Done", "Processing", "Not Started"],
           datasets: [
             {
-              label: "Rainfall",
+              label: "Progress",
               backgroundColor: ["#00FF00", "#FFFF00", "#FF0000"],
               data: [
                 roundToTwo(res.data[0].done),
@@ -40,20 +37,23 @@ function BigChartComponent() {
   return (
     <div
       style={{
-        height: "100px",
+        height: "80px",
         width: "500px",
         position: "absolute",
         top: "175px",
-        right: "40px",
+        right: "80px",
       }}
     >
+      <h4 style={{ marginLeft: "100px", color: "#DD8300" }}>
+        Progress of the project
+      </h4>
       <Pie
         data={chart_posts}
         options={{
           title: {
             display: true,
-            text: "Progress of the project",
-            fontSize: 20,
+            text: " ",
+            fontSize: 2,
             fontColor: "#000000",
             marginLeft: "-150px",
             float: "left",

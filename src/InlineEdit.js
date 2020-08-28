@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import useKeypress from "../hooks/useKeypress";
 import useOnClickOutside from "../hooks/useOnClickOutside";
+
 function InlineEdit(props) {
   const [isInputActive, setIsInputActive] = useState(false);
   const [inputValue, setInputValue] = useState(props.text);
@@ -9,13 +10,7 @@ function InlineEdit(props) {
   const inputRef = useRef(null);
   const enter = useKeypress("Enter");
   const esc = useKeypress("Escape");
-  // check to see if the user clicked outside of this component
-  useOnClickOutside(wrapperRef, () => {
-    if (isInputActive) {
-      props.onSetText(inputValue);
-      setIsInputActive(false);
-    }
-  });
+
   // focus the cursor in the input field on edit start
   useEffect(() => {
     if (isInputActive) {

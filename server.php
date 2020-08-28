@@ -18,30 +18,30 @@
                 echo 'Connection error: ' . mysqli_connect_error();
             }
             
-            // $jotformAPI = new JotForm("548c664ca2fce5280313ba031de6e424");
+            $jotformAPI = new JotForm("548c664ca2fce5280313ba031de6e424");
     
-            // $forms = $jotformAPI->getForms(0, 1, null, null);
+            $forms = $jotformAPI->getForms(0, 1, null, null);
     
-            // $latestForm = $forms[0];
+            $latestForm = $forms[0];
     
-            // $latestFormID = "202044141950039";
+            $latestFormID = "202044141950039";
 
 
-            // $submissions = $jotformAPI->getFormSubmissions($latestFormID);
+            $submissions = $jotformAPI->getFormSubmissions($latestFormID);
             
-            // foreach($submissions[0]["answers"] as $denemeArr){
-            //     if(isset($denemeArr["name"]) && $denemeArr["name"]=="pleaseSelect3"){
-            //         if(isset($denemeArr["answer"]) && $denemeArr["answer"] == "Create a new task"){
-            //             leader_newTask($submissions);
-            //         }
-            //         else if(isset($denemeArr["answer"]) && $denemeArr["answer"] == "Update a task"){
-            //             updateTask_leader($submissions);
-            //         }else if(isset($denemeArr["answer"]) && $denemeArr["answer"] == "Add a team member"){
-            //             addMember_leader($submissions);
-            //         }else if(isset($denemeArr["answer"]) && $denemeArr["answer"] == "Delete a task")
-            //             deleteTask_leader($submissions);
-            //     }
-            // }
+            foreach($submissions[0]["answers"] as $denemeArr){
+                if(isset($denemeArr["name"]) && $denemeArr["name"]=="pleaseSelect3"){
+                    if(isset($denemeArr["answer"]) && $denemeArr["answer"] == "Create a new task"){
+                        leader_newTask($submissions);
+                    }
+                    else if(isset($denemeArr["answer"]) && $denemeArr["answer"] == "Update a task"){
+                        updateTask_leader($submissions);
+                    }else if(isset($denemeArr["answer"]) && $denemeArr["answer"] == "Add a team member"){
+                        addMember_leader($submissions);
+                    }else if(isset($denemeArr["answer"]) && $denemeArr["answer"] == "Delete a task")
+                        deleteTask_leader($submissions);
+                }
+            }
 
             //echo json_encode($submissions);
             
