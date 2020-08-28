@@ -3,6 +3,10 @@ import "./App.css";
 import axios from "axios";
 import { HorizontalBar } from "react-chartjs-2";
 
+function roundToTwo(num) {
+  return +(Math.round(num + "e+2") + "e-2");
+}
+
 function BarChartComponent() {
   const [chart_posts, setChartPosts] = useState([]);
 
@@ -43,7 +47,7 @@ function BarChartComponent() {
           }
           totalPerc = totalPerc + parseInt(memberPerc[j]);
           newPerc = totalPerc / taskNum;
-          memberPerc[j] = newPerc;
+          memberPerc[j] = roundToTwo(newPerc);
 
           taskNum = 1;
           totalPerc = 0;
