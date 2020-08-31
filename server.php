@@ -18,13 +18,13 @@
                 echo 'Connection error: ' . mysqli_connect_error();
             }
             
-            $jotformAPI = new JotForm("548c664ca2fce5280313ba031de6e424");
+            $jotformAPI = new JotForm("API_KEY");
     
             $forms = $jotformAPI->getForms(0, 1, null, null);
     
             $latestForm = $forms[0];
     
-            $latestFormID = "202044141950039";
+            $latestFormID = "FORM_ID";
 
 
             $submissions = $jotformAPI->getFormSubmissions($latestFormID);
